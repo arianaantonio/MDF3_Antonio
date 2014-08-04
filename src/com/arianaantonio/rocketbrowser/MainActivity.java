@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		
 		return true;
-	}   
+	}    
 	//get which action bar item selected and perform action based on selection
 		@Override
 		public boolean onOptionsItemSelected(MenuItem item) {
