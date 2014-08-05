@@ -93,7 +93,7 @@ public class MainActivity extends Activity {
 					} catch (IOException e) {
 						e.printStackTrace();
 					} finally {
-						try { 
+						try {
 							writer.close();
 						} catch (IOException e) {
 							e.printStackTrace();
