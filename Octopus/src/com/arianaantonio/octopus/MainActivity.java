@@ -1,33 +1,62 @@
 package com.arianaantonio.octopus;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends Activity {
 	
 	WebView webview;
+	EditText urlField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        webview = new WebView(this);
-        setContentView(webview);
+        setContentView(R.layout.activity_main);
+        webview = (WebView) findViewById(R.id.webView1);
+        urlField = (EditText) findViewById(R.id.editText1);
+        urlField.setFocusableInTouchMode(true);
+        urlField.requestFocus();
+          
         WebSettings browserSettings = webview.getSettings();
         browserSettings.setJavaScriptEnabled(true);
-       // webview.loadUrl("http://slashdot.org/");
         webview.setWebViewClient(new WebViewClient());
-  
-        webview.loadUrl("http://www.google.com");
+        
+        Intent intent = getIntent();
+        Uri data = intent.getData();
+        
+        Log.i("Main Activity", "Intent URL passed: " +data);
+        webview.loadUrl(data.toString());
+        //webview.loadUrl("http://www.google.com");
 
-        //setContentView(R.layout.activity_main);
+        
+        Button button = (Button) findViewById(R.id.button1);
+        button.setBackgroundResource(R.drawable.right_circular128);
+        button.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				String enteredText = urlField.getText().toString();
+		        Log.i("Main Activity", "Entered URL: " +enteredText);
+		        
+		        //TODO Handle adding proper formatting to URL  
+		        webview.loadUrl(enteredText);
+			}
+        	
+        });
+        
     }
 
 
