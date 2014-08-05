@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
        // webview.loadUrl("http://slashdot.org/");
         webview.setWebViewClient(new WebViewClient());
   
-        webview.loadUrl("http://www.google.com");
+        webview.loadUrl("http://www.fullsail.edu");
 
         //setContentView(R.layout.activity_main);
     }
