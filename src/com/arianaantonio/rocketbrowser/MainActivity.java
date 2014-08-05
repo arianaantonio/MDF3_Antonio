@@ -2,6 +2,7 @@ package com.arianaantonio.rocketbrowser;
 
 
 
+import android.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,7 +25,7 @@ public class MainActivity extends Activity {
 		inflater.inflate(R.menu.action_bar, menu);
 		getMenuInflater().inflate(R.menu.main, menu);
 		
-		return true;
+		return true; 
 	}    
 	//get which action bar item selected and perform action based on selection
 		@Override
