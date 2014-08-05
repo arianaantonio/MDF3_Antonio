@@ -27,6 +27,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         webview = (WebView) findViewById(R.id.webView1);
         urlField = (EditText) findViewById(R.id.editText1);
+        Button bookmarkButton = (Button) findViewById(R.id.button2);
+        bookmarkButton.setBackgroundResource(R.drawable.literature128);  
         urlField.setFocusableInTouchMode(true);
         urlField.requestFocus();
           
@@ -38,7 +40,12 @@ public class MainActivity extends Activity {
         Uri data = intent.getData();
         
         Log.i("Main Activity", "Intent URL passed: " +data);
-        webview.loadUrl(data.toString());
+        if (data !=null) {
+        	webview.loadUrl(data.toString());
+        } else {
+        	webview.loadUrl("http://www.google.com"); 
+        }
+        
         //webview.loadUrl("http://www.google.com");
 
         
@@ -53,6 +60,18 @@ public class MainActivity extends Activity {
 		        
 		        //TODO Handle adding proper formatting to URL  
 		        webview.loadUrl(enteredText);
+			}
+        	
+        });
+        
+        bookmarkButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Save data to text file
+				String saveURL = urlField.getText().toString();
+				Log.i("Main Activity", "Bookmarked Link: " +saveURL);
+				
 			}
         	
         });
@@ -74,21 +93,25 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.refresh:
-			Log.i("Main Activity", "Selected 'Refresh'");
-			webview.reload();
-			break;
+				Log.i("Main Activity", "Selected 'Refresh'");
+				webview.reload();
+				break;
 			case R.id.backward:
-			Log.i("Main Activity", "Selected 'Backward'");
-			if (webview.canGoBack()) {
-				webview.goBack();
-			}
-			break;
+				Log.i("Main Activity", "Selected 'Backward'");
+				if (webview.canGoBack()) {
+					webview.goBack();
+				}
+				break;
 			case R.id.forward:
-			Log.i("Main Activity", "Selected 'Forward'");
-			if (webview.canGoForward()) {
-				webview.goForward();
-			}
-			break;
+				Log.i("Main Activity", "Selected 'Forward'");
+				if (webview.canGoForward()) {
+					webview.goForward();
+				}
+				break;
+			case R.id.bookmarks:
+				Log.i("Main Activity", "Selected 'Booksmarks'");
+
+				break;
 		}
 		return true;
 	} 

@@ -11,5 +11,6 @@
     <color name="background">#404040</color>
     <color name="white">#ffffff</color>
     <color name="turquoise">#0cb5d3</color>
+    <string name="bookmarks">Bookmarks</string>
 
 </resources>

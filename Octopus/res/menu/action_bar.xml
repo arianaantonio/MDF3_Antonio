@@ -17,5 +17,11 @@
 	android:icon="@drawable/right2128"
 	android:showAsAction="always"
 	android:title="@string/forward" />
+	
+	<item
+	android:id="@+id/bookmarks"
+	android:icon="@drawable/literature128"
+	android:showAsAction="always"
+	android:title="@string/bookmarks" />
 
 </menu>

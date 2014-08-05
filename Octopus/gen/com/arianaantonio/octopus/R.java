@@ -29,17 +29,20 @@ public final class R {
         public static final int available_updates128=0x7f020000;
         public static final int ic_launcher=0x7f020001;
         public static final int left3128=0x7f020002;
-        public static final int right2128=0x7f020003;
-        public static final int right_circular128=0x7f020004;
-        public static final int right_circular128_copy=0x7f020005;
+        public static final int literature128=0x7f020003;
+        public static final int right2128=0x7f020004;
+        public static final int right_circular128=0x7f020005;
+        public static final int right_circular128_copy=0x7f020006;
     }
     public static final class id {
-        public static final int action_settings=0x7f090006;
-        public static final int backward=0x7f090004;
+        public static final int action_settings=0x7f090008;
+        public static final int backward=0x7f090005;
+        public static final int bookmarks=0x7f090007;
         public static final int button1=0x7f090002;
+        public static final int button2=0x7f090003;
         public static final int editText1=0x7f090001;
-        public static final int forward=0x7f090005;
-        public static final int refresh=0x7f090003;
+        public static final int forward=0x7f090006;
+        public static final int refresh=0x7f090004;
         public static final int webView1=0x7f090000;
     }
     public static final class layout {
@@ -53,6 +56,7 @@ public final class R {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int backward=0x7f050003;
+        public static final int bookmarks=0x7f050007;
         public static final int forward=0x7f050002;
         public static final int goButton=0x7f050006;
         public static final int hint=0x7f050005;
