@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +17,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class BookmarksActivity extends Activity {
+	//global variables
 	Context context;
+	String string;
+	String selectedItem;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +37,7 @@ public class BookmarksActivity extends Activity {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 
 			openFileInput("BookmarksFile.txt")));
-			String string;
+			
 			StringBuffer stringBuffer = new StringBuffer();
 			while ((string = reader.readLine()) != null) {
 				stringBuffer.append(string + "\n");
@@ -54,13 +58,26 @@ public class BookmarksActivity extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 					long arg3) {
 				// TODO Auto-generated method stub
-				String selectedItem = myData.get(position);
+				selectedItem = myData.get(position);
 				Log.i("Bookmarks Activity", "Item selected: " +selectedItem);
+				
+				finish();
 				
 			}
 			
 		}); 
 		
+	}
+
+	@Override
+	public void finish() {
+		Log.i("Bookmarks Activity", "Activity finished");
+
+		Intent dataPassing = new Intent();
+		dataPassing.putExtra("url", selectedItem);
+		setResult(RESULT_OK, dataPassing);
+		
+		super.finish();
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -22,16 +23,18 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class MainActivity extends Activity {
+@SuppressLint("SetJavaScriptEnabled") public class MainActivity extends Activity {
 	
 	WebView webview;
 	EditText urlField;
 	Context context;
+	String urlPassed;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
         context = this;
         webview = (WebView) findViewById(R.id.webView1);
         urlField = (EditText) findViewById(R.id.editText1);
@@ -50,6 +53,8 @@ public class MainActivity extends Activity {
         Log.i("Main Activity", "Intent URL passed: " +data);
         if (data !=null) {
         	webview.loadUrl(data.toString());
+        } else if (urlPassed != null) {
+        	webview.loadUrl(urlPassed);
         } else {
         	webview.loadUrl("http://www.google.com"); 
         }
@@ -139,10 +144,21 @@ public class MainActivity extends Activity {
 			case R.id.bookmarks:
 				Log.i("Main Activity", "Selected 'Booksmarks'");
 				Intent bookmarksActivity = new Intent(getBaseContext(), BookmarksActivity.class);
-				startActivity(bookmarksActivity); 
+				startActivityForResult(bookmarksActivity, 0); 
 				break;
 		}
 		return true;
-	} 
-    
+	
+	}
+	protected void onActivityResult(int requestCode, int resultCode, Intent dataPassing) {
+		Log.i("Main Activity", "Pulling passed data");
+
+		if (resultCode == RESULT_OK && requestCode == 0) {
+			if (dataPassing.hasExtra("url")) {
+				urlPassed = dataPassing.getExtras().getString("url");
+				webview.loadUrl(urlPassed);
+				Log.i("Main Activity", "Passed URL: " +urlPassed);
+			}
+		}
+	}
 }
