@@ -138,7 +138,8 @@ public class MainActivity extends Activity {
 				break;
 			case R.id.bookmarks:
 				Log.i("Main Activity", "Selected 'Booksmarks'");
-
+				Intent bookmarksActivity = new Intent(getBaseContext(), BookmarksActivity.class);
+				startActivity(bookmarksActivity); 
 				break;
 		}
 		return true;

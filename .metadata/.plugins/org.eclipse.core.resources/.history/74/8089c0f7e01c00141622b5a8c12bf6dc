@@ -1,0 +1,33 @@
+package com.arianaantonio.octopus;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class BookmarksActivity extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		
+		try {
+			//reading saved file of favorites and setting to textView
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+
+			openFileInput("BookmarksFile.txt")));
+			String string;
+			StringBuffer stringBuffer = new StringBuffer();
+			while ((string = reader.readLine()) != null) {
+				stringBuffer.append(string + "\n");
+			}
+				//favoritesView.setText(stringBuffer.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	}
+	
+}

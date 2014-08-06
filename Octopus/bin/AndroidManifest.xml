@@ -29,6 +29,10 @@
               <data android:scheme="http"/>
           </intent-filter>
         </activity>
+        <activity 
+            android:name="com.arianaantonio.octopus.BookmarksActivity"
+            android:label="@string/bookmarks" >
+        </activity>
     </application>
 
 </manifest>
