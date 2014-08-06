@@ -1,3 +1,17 @@
+/*
+ * Author: Ariana Antonio
+ * 
+ * Project: Octopus Browser
+ * 
+ * Package: com.arianaantonio.octopus
+ * 
+ * File: BookmarksActivity.java
+ * 
+ * Purpose: This activity is launched when the user clicks the bookmark icon on the action bar in MainActivity. It displays
+ * the bookmarked websites in a listview. When a website is clicked it sends the user back to the MainActivity view to display the 
+ * web page in the webview
+ */
+
 package com.arianaantonio.octopus;
 
 import java.io.BufferedReader;
@@ -24,16 +38,15 @@ public class BookmarksActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+	
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bookmarks);
 		context = this;
-		
-		//HashMap<String, String> displayText = new HashMap<String, String>();
-		//ArrayList<HashMap<String, String>> myData = new ArrayList<HashMap<String, String>>();
+	
 		final ArrayList<String> myData = new ArrayList<String>();
+		
 		try {
-			//reading saved file of favorites and setting to textView
+			//reading saved file of favorites and adding to array
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 
 			openFileInput("BookmarksFile.txt")));
@@ -41,14 +54,13 @@ public class BookmarksActivity extends Activity {
 			StringBuffer stringBuffer = new StringBuffer();
 			while ((string = reader.readLine()) != null) {
 				stringBuffer.append(string + "\n");
-				//displayText.put("url", string);
-				//myData.add(displayText);
 				myData.add(string);
 			}
-				//favoritesView.setText(stringBuffer.toString());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		//creating the listview and using the array of urls as the data
 		ArrayAdapter<String> adapter = new ArrayAdapter<String> (context, android.R.layout.simple_list_item_1, myData);
 		ListView listview = (ListView) findViewById(R.id.listView1);
 		listview.setAdapter(adapter);
@@ -57,7 +69,7 @@ public class BookmarksActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 					long arg3) {
-				// TODO Auto-generated method stub
+	
 				selectedItem = myData.get(position);
 				Log.i("Bookmarks Activity", "Item selected: " +selectedItem);
 				
@@ -73,6 +85,7 @@ public class BookmarksActivity extends Activity {
 	public void finish() {
 		Log.i("Bookmarks Activity", "Activity finished");
 
+		//passing the selected url back to MainActivity
 		Intent dataPassing = new Intent();
 		dataPassing.putExtra("url", selectedItem);
 		setResult(RESULT_OK, dataPassing);
