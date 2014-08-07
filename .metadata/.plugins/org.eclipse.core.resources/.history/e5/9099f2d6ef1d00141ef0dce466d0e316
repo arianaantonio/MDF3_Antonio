@@ -184,7 +184,7 @@ import android.widget.Toast;
 		URL url = new URL(urlTest);
 	      return true;
 	    }
-	    catch (MalformedURLException e) {  
+	    catch (MalformedURLException e) { 
 	        return false;
 	    }
 	}
