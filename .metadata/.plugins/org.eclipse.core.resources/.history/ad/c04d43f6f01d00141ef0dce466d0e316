@@ -84,7 +84,6 @@ import android.widget.Toast;
         //check if data was passed, entered manually, or not at all
         if (data !=null) {
         	webview.loadUrl(data.toString());
-        	urlField.setText(data.toString());
         } else if (urlPassed != null) {
         	webview.loadUrl(urlPassed);
         } else {
@@ -119,7 +118,7 @@ import android.widget.Toast;
 				// TODO Save data to text file
 				String saveURL = urlField.getText().toString();
 				Log.i("Main Activity", "Bookmarked Link: " +saveURL);
-				 
+				
 				//saving url to file
 				BufferedWriter writer = null;
 				try {

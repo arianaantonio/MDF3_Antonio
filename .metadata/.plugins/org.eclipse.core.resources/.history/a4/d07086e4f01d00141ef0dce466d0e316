@@ -66,9 +66,9 @@ import android.widget.Toast;
         NetworkConnect networkConnection = new NetworkConnect();
         Boolean networkConn = networkConnection.connectionStatus(context);
         if (networkConn) {
-        //Toast.makeText(context, "You are connected", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "You are connected", Toast.LENGTH_LONG).show();
         } else {
-        Toast.makeText(context, "You are NOT connected to the internet", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "You are NOT connected", Toast.LENGTH_LONG).show();
         }
           
         //setting the webview settings
@@ -84,7 +84,6 @@ import android.widget.Toast;
         //check if data was passed, entered manually, or not at all
         if (data !=null) {
         	webview.loadUrl(data.toString());
-        	urlField.setText(data.toString());
         } else if (urlPassed != null) {
         	webview.loadUrl(urlPassed);
         } else {
@@ -119,7 +118,7 @@ import android.widget.Toast;
 				// TODO Save data to text file
 				String saveURL = urlField.getText().toString();
 				Log.i("Main Activity", "Bookmarked Link: " +saveURL);
-				 
+				
 				//saving url to file
 				BufferedWriter writer = null;
 				try {

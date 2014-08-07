@@ -23,8 +23,7 @@
         android:ems="10"
         android:hint="@string/hint"
         android:inputType="textUri"
-        android:textColor="@color/turquoise"
-        android:text="http://www." >
+        android:textColor="@color/turquoise" >
 
         <requestFocus />
     </EditText>

@@ -84,7 +84,6 @@ import android.widget.Toast;
         //check if data was passed, entered manually, or not at all
         if (data !=null) {
         	webview.loadUrl(data.toString());
-        	urlField.setText(data.toString());
         } else if (urlPassed != null) {
         	webview.loadUrl(urlPassed);
         } else {

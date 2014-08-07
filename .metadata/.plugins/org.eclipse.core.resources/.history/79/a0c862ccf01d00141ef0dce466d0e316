@@ -20,8 +20,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.arianaantonio.networkconnection.NetworkConnect;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -61,15 +59,6 @@ import android.widget.Toast;
         bookmarkButton.setBackgroundResource(R.drawable.literature128);  
         urlField.setFocusableInTouchMode(true);
         urlField.requestFocus();
-        
-    	//checking network connection from JAR
-        NetworkConnect networkConnection = new NetworkConnect();
-        Boolean networkConn = networkConnection.connectionStatus(context);
-        if (networkConn) {
-        //Toast.makeText(context, "You are connected", Toast.LENGTH_LONG).show();
-        } else {
-        Toast.makeText(context, "You are NOT connected to the internet", Toast.LENGTH_LONG).show();
-        }
           
         //setting the webview settings
         WebSettings browserSettings = webview.getSettings();
@@ -84,7 +73,6 @@ import android.widget.Toast;
         //check if data was passed, entered manually, or not at all
         if (data !=null) {
         	webview.loadUrl(data.toString());
-        	urlField.setText(data.toString());
         } else if (urlPassed != null) {
         	webview.loadUrl(urlPassed);
         } else {
@@ -119,7 +107,7 @@ import android.widget.Toast;
 				// TODO Save data to text file
 				String saveURL = urlField.getText().toString();
 				Log.i("Main Activity", "Bookmarked Link: " +saveURL);
-				 
+				
 				//saving url to file
 				BufferedWriter writer = null;
 				try {
