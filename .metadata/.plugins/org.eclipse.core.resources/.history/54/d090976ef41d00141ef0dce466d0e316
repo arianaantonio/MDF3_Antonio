@@ -209,8 +209,7 @@ import android.widget.Toast;
 		if (resultCode == RESULT_OK && requestCode == 0) {
 			if (dataPassing.hasExtra("url")) {
 				urlPassed = dataPassing.getExtras().getString("url");
-				webview.loadUrl(urlPassed);  
-				urlField.setText(urlPassed);
+				webview.loadUrl(urlPassed);   
 				Log.i("Main Activity", "Passed URL: " +urlPassed);
 			}
 		}

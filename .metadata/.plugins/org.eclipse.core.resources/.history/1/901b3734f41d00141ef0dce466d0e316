@@ -89,8 +89,7 @@ import android.widget.Toast;
         	webview.loadUrl(urlPassed);
         	urlField.setText(urlPassed);
         } else {
-        	webview.loadUrl("http://www.google.com");
-        	urlField.setText("http://www."); 
+        	webview.loadUrl("http://www.google.com"); 
         }
         
         //button to go to website
@@ -209,8 +208,7 @@ import android.widget.Toast;
 		if (resultCode == RESULT_OK && requestCode == 0) {
 			if (dataPassing.hasExtra("url")) {
 				urlPassed = dataPassing.getExtras().getString("url");
-				webview.loadUrl(urlPassed);  
-				urlField.setText(urlPassed);
+				webview.loadUrl(urlPassed);   
 				Log.i("Main Activity", "Passed URL: " +urlPassed);
 			}
 		}

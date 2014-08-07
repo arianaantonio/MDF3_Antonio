@@ -70,7 +70,7 @@ import android.widget.Toast;
         } else {
         Toast.makeText(context, "You are NOT connected to the internet", Toast.LENGTH_LONG).show();
         }
-           
+          
         //setting the webview settings
         WebSettings browserSettings = webview.getSettings();
         browserSettings.setJavaScriptEnabled(true);
@@ -87,10 +87,8 @@ import android.widget.Toast;
         	urlField.setText(data.toString());
         } else if (urlPassed != null) {
         	webview.loadUrl(urlPassed);
-        	urlField.setText(urlPassed);
         } else {
-        	webview.loadUrl("http://www.google.com");
-        	urlField.setText("http://www."); 
+        	webview.loadUrl("http://www.google.com"); 
         }
         
         //button to go to website
@@ -209,8 +207,7 @@ import android.widget.Toast;
 		if (resultCode == RESULT_OK && requestCode == 0) {
 			if (dataPassing.hasExtra("url")) {
 				urlPassed = dataPassing.getExtras().getString("url");
-				webview.loadUrl(urlPassed);  
-				urlField.setText(urlPassed);
+				webview.loadUrl(urlPassed);   
 				Log.i("Main Activity", "Passed URL: " +urlPassed);
 			}
 		}
