@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SnapItCamera</string>
+    <string name="action_settings">Settings</string>
+    <string name="camera_button">Take A Photo</string>
+	<color name="orange">#ea6309</color>color>
+ 
+</resources>

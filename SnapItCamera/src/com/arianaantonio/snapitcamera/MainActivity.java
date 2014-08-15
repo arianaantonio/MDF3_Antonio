@@ -23,10 +23,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.hardware.Camera;
 import android.net.Uri;
@@ -48,28 +46,27 @@ public class MainActivity extends Activity {
 	Button button;
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
 	private static Uri fileUri;
+	@SuppressWarnings("unused")
 	private static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
-	Camera mCamera;
+	Camera camera;
 	private SmartImageView imageView;
-	Context context;
-	static File mediaFile;
+	Context context;   
+	static File mediaFile;    
 	
-
-
-	
-    @Override
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        context=this;
+        context=this;           
         
+        //take photo clicked
         button = (Button) findViewById(R.id.button1);
         button.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
+				//intent to open camera and return image
 				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-				
 				fileUri = getOutputMediaFileUri(1); 
 				Log.i("Main Activity", "File Uri: " +fileUri);
 		        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
@@ -80,74 +77,71 @@ public class MainActivity extends Activity {
         	
         
     }
+	//get uri from image 
     private static Uri getOutputMediaFileUri(int type){
         return Uri.fromFile(getOutputMediaFile(type));
     }
     @SuppressLint("SimpleDateFormat")
-	private static File getOutputMediaFile(int type){
-        // To be safe, you should check that the SDCard is mounted
-        // using Environment.getExternalStorageState() before doing this.
+    //save image to external file and set title
+	private static File getOutputMediaFile(int type) {
+    
+    	@SuppressWarnings("unused")
+		boolean externalStorageAvailable = false;
+    	@SuppressWarnings("unused")
+		boolean externalStorageWriteable = false;
     	
-    	BroadcastReceiver mExternalStorageReceiver;  
-    	boolean mExternalStorageAvailable = false;
-    	boolean mExternalStorageWriteable = false;
-
-    	
+    	//check to see if external storage is available and writeable
     	String storageState = Environment.getExternalStorageState();
     	if (Environment.MEDIA_MOUNTED.equals(storageState)) {
     		Log.i("Main Activity", "Storage Available");
-            mExternalStorageAvailable = mExternalStorageWriteable = true;
+            externalStorageAvailable = externalStorageWriteable = true;
         } else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(storageState)) {
-            mExternalStorageAvailable = true;
-            mExternalStorageWriteable = false;
+            externalStorageAvailable = true;
+            externalStorageWriteable = false;
         } else {
-            mExternalStorageAvailable = mExternalStorageWriteable = false;
+            externalStorageAvailable = externalStorageWriteable = false;
         }
-        //handleExternalStorageState(mExternalStorageAvailable,
-                //mExternalStorageWriteable);
-    
- 
-    	
 
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+    	//save image to file
+    	File mediaDir = new File(Environment.getExternalStoragePublicDirectory(
                   Environment.DIRECTORY_PICTURES), "SnapItCamera");
 
-
-        Log.i("Main Activity", "Image Storage: " +mediaStorageDir);
-      
-        if (! mediaStorageDir.exists()){
+    	Log.i("Main Activity", "Image Storage: " +mediaDir);
+    	
+    	//if directory doesn't exist, create it
+        if (! mediaDir.exists()){
         	Log.i("Main Activity", "Storage does not exist");
-            if (! mediaStorageDir.mkdirs()){
+            if (! mediaDir.mkdirs()){
                 Log.d("SnapItCamera", "failed to create directory");
                 return null;
             }
         }
-
-       
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        
-        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+       //create unique title for image based on when taken
+       String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+       mediaFile = new File(mediaDir.getPath() + File.separator +
             "IMG_"+ timeStamp + ".jpg");
         Log.i("Main Activity", "File Name: " +mediaFile);
         return mediaFile;
     }
- 
+    //release camera so it can be used agiN
     private void releaseCamera(){
-        if (mCamera != null){
-            mCamera.release();      
-            mCamera = null;
+        if (camera != null){
+            camera.release();      
+            camera = null;
         }
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-           
+            //if image was saved
+        	if (resultCode == RESULT_OK) {
+        		
+        		//set image to imageView
             	Log.i("Main Activity", "Activity Result File Uri: " +fileUri);
             	imageView = (SmartImageView) findViewById(R.id.my_image);
             	imageView.setImageURI(fileUri);
       
+            	//save image to gallery
             	Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
             	intent.setData(fileUri);
             	sendBroadcast(intent); 
@@ -155,27 +149,29 @@ public class MainActivity extends Activity {
 				try {
 					bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), fileUri);
 				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-            	NotificationCompat.Builder mBuilder =
+				//build notification
+            	NotificationCompat.Builder builder =
             		    new NotificationCompat.Builder(this)
             		    .setSmallIcon(R.drawable.ic_launcher)
             		    .setContentTitle("Image Saved")
             		    .setLargeIcon(bitmap)
             		    .setContentText("Your image was saved to the Gallery");
-            	int mNotificationId = 001;
-            	NotificationManager mNotifyMgr = 
+            	int notificationId = 001;
+            	NotificationManager notifyMgr = 
             	        (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            	//path to gallery
             	String newfileUri = "content://media/external/images/media";  
-            
+            	//intent to open gallery from notification
             	Intent newIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(newfileUri));
                 PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, newIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-            	mBuilder.setContentIntent(pendingIntent);
-            	mNotifyMgr.notify(mNotificationId, mBuilder.build());
+            	builder.setContentIntent(pendingIntent);
+            	
+            	//start notification 
+            	notifyMgr.notify(notificationId, builder.build());
             } else if (resultCode == RESULT_CANCELED) {
             	Toast.makeText(this, "Save canceled", Toast.LENGTH_LONG).show();
             } else { 
