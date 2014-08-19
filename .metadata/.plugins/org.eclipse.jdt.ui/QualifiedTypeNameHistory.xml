@@ -6,6 +6,11 @@
 <fullyQualifiedTypeName name="android.R.layout"/>
 <fullyQualifiedTypeName name="com.arianaantonio.octopus.R.drawable"/>
 <fullyQualifiedTypeName name="com.arianaantonio.stubapp.R.id"/>
+<fullyQualifiedTypeName name="com.arianaantonio.networkconnection.NetworkConnect"/>
+<fullyQualifiedTypeName name="com.arianaantonio.snapitcamera.R.id"/>
 <fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
+<fullyQualifiedTypeName name="java.sql.Date"/>
 <fullyQualifiedTypeName name="android.util.Log"/>
+<fullyQualifiedTypeName name="android.hardware.Camera"/>
+<fullyQualifiedTypeName name="com.arianaantonio.snapitcamera.R.drawable"/>
 </qualifiedTypeNameHistroy>
