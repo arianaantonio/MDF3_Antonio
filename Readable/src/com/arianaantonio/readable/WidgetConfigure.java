@@ -1,10 +1,6 @@
 package com.arianaantonio.readable;
 
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -12,6 +8,8 @@ import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,32 +34,15 @@ public class WidgetConfigure extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		BufferedWriter writer = null;
-		
-		//String filePath = context.getFilesDir().getPath().toString() + "/BookList.txt";
-		//File file = new File(filePath);
-		//try {
-			//System.out.println(file.getCanonicalPath());
-			//file.delete();
-			//writer = new BufferedWriter(new FileWriter(file, true));
-			//String lotr = "The Lord Of The Rings";
-			//String goneGirl = "Gone Girl";
-			//writer.write(lotr);
-			//writer.write(goneGirl);  
-		//} //catch (IOException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-		//}
-		
+
 		context = this;
 		
 		Spinner spinner = (Spinner) findViewById(R.id.spinner1);
 		arrayForSpinner.add("Red");
 		arrayForSpinner.add("Green");
-		arrayForSpinner.add("Purple");
+		arrayForSpinner.add("Gray");
 		arrayForSpinner.add("Blue");
-		arrayForSpinner.add("Orange");
+		arrayForSpinner.add("White");
 		arrayForSpinner.add("Yellow");
 		
 		ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, arrayForSpinner);
@@ -100,16 +81,39 @@ public class WidgetConfigure extends Activity {
 						
 						 
 						 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-						 
-						 WidgetProvider widgetActivity = new WidgetProvider();
-						 //widgetActivity.Save = 
-						 
+			
 						 RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
-						 appWidgetManager.updateAppWidget(widgetID, view);
-						 view.setTextViewText(R.id.nextBook, "The Lord Of The Rings");
-						 view.setTextViewText(R.id.nextBookTitle, "Next book to read for " +userName); 
+						
+						 view.setTextViewText(R.id.nextBook, "House Of Leaves");
+						 if (userName.equals("")) {
+							 view.setTextViewText(R.id.nextBookTitle, "Your next book to read:");
+						 } else {
+							 view.setTextViewText(R.id.nextBookTitle, userName+ "'s next book to read:" );
+						 }
 						 
-						 Uri website = Uri.parse("http://www.google.com");
+						 
+						 
+						 if (colorPicked.equals("Red")) {
+							 view.setTextColor(R.id.nextBook, Color.RED);
+					 	 } else if (colorPicked.equals("White")) {
+					 		view.setTextColor(R.id.nextBook, Color.WHITE);
+					 	 } else if (colorPicked.equals("Blue")) {
+					 		view.setTextColor(R.id.nextBook, Color.BLUE); 
+					 	 } else if (colorPicked.equals("Green")) {
+					 		view.setTextColor(R.id.nextBook, Color.GREEN);
+					 	 } else if (colorPicked.equals("Yellow")) {
+					 		view.setTextColor(R.id.nextBook, Color.YELLOW); 
+					 	 } else {
+					 		view.setTextColor(R.id.nextBook, Color.DKGRAY); 
+					 	 }  
+						 		
+						 SharedPreferences settings = getSharedPreferences("Settings", 0);
+						 SharedPreferences.Editor editor = settings.edit();
+						 editor.putString("Username", userName);
+						 editor.putString("Color", colorPicked);
+						 editor.commit();
+						 
+						 Uri website = Uri.parse("http://www.amazon.com/House-Leaves-Mark-Z-Danielewski/dp/0375703764/ref=sr_1_1?s=books&ie=UTF8&qid=1408519554&sr=1-1&keywords=house+of+leaves");
 						 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, website);
 						  
 						 PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, websiteIntent, 0);
@@ -117,6 +121,7 @@ public class WidgetConfigure extends Activity {
 						 Intent result = new Intent();
 						 result.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID);
 						 setResult(RESULT_OK, result);
+						 appWidgetManager.updateAppWidget(widgetID, view);
 						 finish();  
 						 
 					 }

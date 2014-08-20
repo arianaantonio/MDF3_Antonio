@@ -5,10 +5,11 @@
     <string name="username">Enter Your Name:</string>
     <string name="nextBook">Next Book:</string>
     <color name="lavender">#cba1e6</color>
-    <string name="backgroundColor">Choose A Background Color:</string>
+    <string name="backgroundColor">Choose A Book Text Color:</string>
     <string name="button">Save Settings</string>
     <dimen name="widget_margin">8dp</dimen>
     <string name="widget_button">Book Details On Amazon</string>
     <string name="detailactivity">Book Details</string>
+    <color name="black">#000000</color>
 
 </resources>

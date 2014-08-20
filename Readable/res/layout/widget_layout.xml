@@ -18,7 +18,9 @@
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="" >
+            android:text=""
+            android:textColor="@color/black"
+            android:layout_marginLeft="5dp" >
         </TextView>
 
         <TextView
@@ -26,14 +28,17 @@
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="" >
+            android:text=""
+            android:textColor="@color/black"
+            android:layout_marginLeft="5dp" >
         </TextView>
 
         <Button
             android:id="@+id/button1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/widget_button" />
+            android:layout_height="27dp"
+            android:text="@string/widget_button"
+            android:textSize="10sp" />
 
     </LinearLayout>
 
