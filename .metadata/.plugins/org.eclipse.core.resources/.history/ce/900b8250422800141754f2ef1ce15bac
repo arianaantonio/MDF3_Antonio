@@ -108,7 +108,7 @@ public class WidgetProvider extends AppWidgetProvider {
 	 		views.setTextColor(R.id.nextBook, Color.DKGRAY); 
 	 	 }  
 		count++;  
-		//views.setTextViewText(R.id.nextBookTitle, "Your next book to read"); 
+		views.setTextViewText(R.id.nextBookTitle, "Your next book to read"); 
 		
 		
 		appWidgetManager.updateAppWidget(appWidgetIds, views);  
