@@ -980,6 +980,7 @@ containing a value of this type.
          (the screen is in portrait). This may be either a fraction or a dimension.
          */
         public static final int dialog_fixed_width_minor=0x7f090012;
+        public static final int widget_margin=0x7f090015;
     }
     public static final class drawable {
         public static final int abc_ab_bottom_solid_dark_holo=0x7f020000;
@@ -1191,8 +1192,9 @@ containing a value of this type.
         public static final int abc_search_view=0x7f030016;
         public static final int abc_simple_decor=0x7f030017;
         public static final int activity_main=0x7f030018;
-        public static final int support_simple_spinner_dropdown_item=0x7f030019;
-        public static final int widget_layout=0x7f03001a;
+        public static final int details_layout=0x7f030019;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001a;
+        public static final int widget_layout=0x7f03001b;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1238,8 +1240,10 @@ containing a value of this type.
         public static final int app_name=0x7f0b000d;
         public static final int backgroundColor=0x7f0b0010;
         public static final int button=0x7f0b0011;
+        public static final int detailactivity=0x7f0b0013;
         public static final int nextBook=0x7f0b000f;
         public static final int username=0x7f0b000e;
+        public static final int widget_button=0x7f0b0012;
     }
     public static final class style {
         /** 

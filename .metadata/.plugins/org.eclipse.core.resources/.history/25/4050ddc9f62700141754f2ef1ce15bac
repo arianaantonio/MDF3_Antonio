@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Readable</string>
+    <string name="username">Enter Your Name:</string>
+    <string name="nextBook">Next Book:</string>
+    <color name="lavender">#cba1e6</color>
+    <string name="backgroundColor">Choose A Background Color:</string>
+    <string name="button">Save Settings</string>
+
+</resources>
