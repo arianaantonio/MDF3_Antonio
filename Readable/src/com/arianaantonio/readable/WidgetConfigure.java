@@ -1,3 +1,18 @@
+/*
+ * Author: Ariana Antonio
+ * 
+ * Project: Readable
+ * 
+ * Package: com.arianaantonio.octopus
+ * 
+ * File: WidgetConfigure.java
+ * 
+ * Purpose: The activity launches when the widget is first added to the home screen. It gives the user the option to enter
+ * their name to be displayed in the widget and change the book title font color. It saves those configurations to shared 
+ * preferences and updates the widget
+ */
+
+
 package com.arianaantonio.readable;
 
 
@@ -37,6 +52,7 @@ public class WidgetConfigure extends Activity {
 
 		context = this;
 		
+		//create the spinner of font colors
 		Spinner spinner = (Spinner) findViewById(R.id.spinner1);
 		arrayForSpinner.add("Red");
 		arrayForSpinner.add("Green");
@@ -73,15 +89,14 @@ public class WidgetConfigure extends Activity {
 				 if (extras != null) {
 					 int widgetID = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
 				
+					 //get the widgetId and make sure it's valid
 					 if (widgetID != AppWidgetManager.INVALID_APPWIDGET_ID) {
 						
+						 //get name entered and color picked and set them to the widget(remote view)
 						 EditText userNameField = (EditText) findViewById(R.id.editText1);
 						 String userName = userNameField.getText().toString();
 						 Log.i("Main Activity", "Username: " +userName);
 						
-						 
-						 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-			
 						 RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
 						
 						 view.setTextViewText(R.id.nextBook, "House Of Leaves");
@@ -90,8 +105,6 @@ public class WidgetConfigure extends Activity {
 						 } else {
 							 view.setTextViewText(R.id.nextBookTitle, userName+ "'s next book to read:" );
 						 }
-						 
-						 
 						 
 						 if (colorPicked.equals("Red")) {
 							 view.setTextColor(R.id.nextBook, Color.RED);
@@ -106,21 +119,28 @@ public class WidgetConfigure extends Activity {
 					 	 } else {
 					 		view.setTextColor(R.id.nextBook, Color.DKGRAY); 
 					 	 }  
-						 		
+						 //save the name and color selection to shared preferences		
 						 SharedPreferences settings = getSharedPreferences("Settings", 0);
 						 SharedPreferences.Editor editor = settings.edit();
 						 editor.putString("Username", userName);
 						 editor.putString("Color", colorPicked);
 						 editor.commit();
 						 
+						 //adding the book url to the button
 						 Uri website = Uri.parse("http://www.amazon.com/House-Leaves-Mark-Z-Danielewski/dp/0375703764/ref=sr_1_1?s=books&ie=UTF8&qid=1408519554&sr=1-1&keywords=house+of+leaves");
 						 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, website);
-						  
+						 
+						 //launch url intent when button is clicked
 						 PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, websiteIntent, 0);
 						 view.setOnClickPendingIntent(R.id.button1, pendingIntent);
+						 
+						 //set intent for widget
 						 Intent result = new Intent();
 						 result.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID);
 						 setResult(RESULT_OK, result);
+						 
+						 //update the widget with configured information and add to home screen
+						 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 						 appWidgetManager.updateAppWidget(widgetID, view);
 						 finish();  
 						 

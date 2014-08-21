@@ -858,12 +858,15 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f070002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f080005;
+        public static final int abc_search_url_text_holo=0x7f080008;
         public static final int abc_search_url_text_normal=0x7f080000;
         public static final int abc_search_url_text_pressed=0x7f080002;
         public static final int abc_search_url_text_selected=0x7f080001;
         public static final int black=0x7f080004;
+        public static final int darkGray=0x7f080007;
         public static final int lavender=0x7f080003;
+        public static final int lightgrey=0x7f080005;
+        public static final int transparentBlack=0x7f080006;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1072,6 +1075,8 @@ containing a value of this type.
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
         public static final int ic_launcher=0x7f020057;
+        public static final int images=0x7f020058;
+        public static final int images1=0x7f020059;
     }
     public static final class id {
         public static final int action_bar=0x7f06001c;
@@ -1088,14 +1093,14 @@ containing a value of this type.
         public static final int activity_chooser_view_content=0x7f060025;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
-        public static final int button1=0x7f060040;
+        public static final int button1=0x7f06003c;
         public static final int checkbox=0x7f06002d;
         public static final int collapseActionView=0x7f06000d;
         public static final int default_activity_button=0x7f060028;
         public static final int dialog=0x7f06000e;
         public static final int disableHome=0x7f060008;
         public static final int dropdown=0x7f06000f;
-        public static final int editText1=0x7f06003d;
+        public static final int editText1=0x7f06003e;
         public static final int edit_query=0x7f060030;
         public static final int end=0x7f060013;
         public static final int expand_activities_button=0x7f060026;
@@ -1109,8 +1114,8 @@ containing a value of this type.
         public static final int list_item=0x7f060029;
         public static final int middle=0x7f060012;
         public static final int never=0x7f060009;
-        public static final int nextBook=0x7f060042;
-        public static final int nextBookTitle=0x7f060041;
+        public static final int nextBook=0x7f060041;
+        public static final int nextBookTitle=0x7f060040;
         public static final int none=0x7f060010;
         public static final int normal=0x7f060000;
         public static final int progress_circular=0x7f060018;
@@ -1130,12 +1135,11 @@ containing a value of this type.
         public static final int showCustom=0x7f060007;
         public static final int showHome=0x7f060004;
         public static final int showTitle=0x7f060006;
-        public static final int spinner1=0x7f06003f;
+        public static final int spinner1=0x7f06003d;
         public static final int split_action_bar=0x7f06001e;
         public static final int submit_area=0x7f060039;
         public static final int tabMode=0x7f060002;
-        public static final int textView1=0x7f06003c;
-        public static final int textView2=0x7f06003e;
+        public static final int textView2=0x7f06003f;
         public static final int title=0x7f06002b;
         public static final int top_action_bar=0x7f060020;
         public static final int up=0x7f060021;
@@ -1241,6 +1245,7 @@ containing a value of this type.
         public static final int backgroundColor=0x7f0b0010;
         public static final int button=0x7f0b0011;
         public static final int detailactivity=0x7f0b0013;
+        public static final int name=0x7f0b0014;
         public static final int nextBook=0x7f0b000f;
         public static final int username=0x7f0b000e;
         public static final int widget_button=0x7f0b0012;

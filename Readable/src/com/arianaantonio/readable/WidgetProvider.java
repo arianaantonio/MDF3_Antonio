@@ -1,3 +1,17 @@
+/*
+ * Author: Ariana Antonio
+ * 
+ * Project: Readable
+ * 
+ * Package: com.arianaantonio.octopus
+ * 
+ * File: WidgetProvider.java
+ * 
+ * Purpose: The activity is the required provider for the widget. It supplies the essential widget functionality such as onUpdate.
+ * onUpdate is called every hour and updates the book title to the next one in the book list. It also pulls the shared preferences 
+ * so the name and font color are the ones the user configured on startup
+ */          
+
 package com.arianaantonio.readable;
 
 import java.io.BufferedReader;
@@ -22,53 +36,40 @@ import android.widget.RemoteViews;
 
 public class WidgetProvider extends AppWidgetProvider {
 	
+	//global variables
 	//String[] items;
 	List<String> list = new ArrayList<String>();
 	int count = 0;
+	public static final String[] items = new String[]{"The Lord Of The Rings","If I Stay","Gone Girl", "Redshirts", "Ender's Game", "Stardust"};
 	
 	  
 	@Override
 	public void onDeleted(Context context, int[] appWidgetIds) {
-		// TODO Auto-generated method stub
+		
 		super.onDeleted(context, appWidgetIds);
 	}
-
+ 
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, 
 			int[] appWidgetIds) {
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
-	
-		try {
-			String filePath = context.getFilesDir().getPath().toString() + "/BookList.txt";
-			File file = new File(filePath);
-		    BufferedReader br = new BufferedReader(new FileReader(file));
-		    String line;
-		while ((line = br.readLine()) != null) {
-			list.add(line);
-		    Log.i("Widget Provider", "List item: " +line);
-		}
-		    br.close();
-	    } catch (IOException e) {
-			e.printStackTrace();
-		}
 		
 		Log.i("Widget Provider" , "Count: " +count);
 		
+		//get preferences saved in configuration and set them to the widget
 		SharedPreferences settings = context.getSharedPreferences("Settings", 0);
-		String username = settings.getString("Settings", "Stranger");
+		String username = settings.getString("Username", "Stranger");
 		String color = settings.getString("Color", "Gray");
 		Log.i("Widget Provider", "Username and color: " +username+ " " +color);
-		
-	
-		
-		String[] items = new String[list.size()];
 
-        items = list.toArray(items);
+        //items = list.toArray(items);
 		Log.i("Widget Provider", "Book list in onUpdate: " +items[2]); 
 		
+		//check to make sure count isn't higher than array size, if so, start from the beginning
 		if (count > items.length) {
 			count = 0;
-		} 
+		}
+		
 		String bookTitle = items[count];
 		Log.i("Widget Provider", "Title: " +bookTitle);
 		Uri website; 
@@ -86,14 +87,16 @@ public class WidgetProvider extends AppWidgetProvider {
 			website = Uri.parse("http://www.amazon.com/Enders-Game-Ender-book-Saga-ebook/dp/B003G4W49C/ref=sr_1_1?s=books&ie=UTF8&qid=1408514600&sr=1-1&keywords=enders+game");
 		}   
 		
-		 
+		//set the intent for launching the book url 
 		Intent websiteIntent = new Intent(Intent.ACTION_VIEW, website);
 		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, websiteIntent, 0);
 		
+		//set the widget text and colors
 		RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
 		views.setOnClickPendingIntent(R.id.button1, pendingIntent);
 		views.setTextViewText(R.id.nextBook, items[count]);
 		views.setTextViewText(R.id.nextBookTitle, username+ "'s next book to read:");
+		
 		if (color.equals("Red")) {
 			 views.setTextColor(R.id.nextBook, Color.RED);
 	 	 } else if (color.equals("White")) {
@@ -110,7 +113,7 @@ public class WidgetProvider extends AppWidgetProvider {
 		count++;  
 		//views.setTextViewText(R.id.nextBookTitle, "Your next book to read"); 
 		
-		
+		//update the widget with the new information
 		appWidgetManager.updateAppWidget(appWidgetIds, views);  
 	}
 
@@ -118,63 +121,7 @@ public class WidgetProvider extends AppWidgetProvider {
 	public void onEnabled(Context context) {
 		// TODO Auto-generated method stub
 		super.onEnabled(context);
-		Log.i("Widget Provider", "Inside onEnabled");
-		BufferedWriter writer = null;
-		String filePath = context.getFilesDir().getPath().toString() + "/BookList.txt";
-		File file = new File(filePath);
-		file.delete();
-
-				try {
-					
-					System.out.println(file.getCanonicalPath());
-					//file.delete();
-					writer = new BufferedWriter(new FileWriter(file, true));
-					String lotr = "The Lord Of The Rings\n";
-					String goneGirl = "Gone Girl\n";
-					String ifIStay = "If I Stay\n";
-					String redshirts = "Redshirts\n";
-					String stardust = "Stardust\n";
-					String endersGame = "Ender's Game\n";
-				
-					writer.write(lotr);
-					writer.write(goneGirl); 
-					writer.write(ifIStay);
-					writer.write(redshirts);
-					writer.write(stardust);
-					writer.write(endersGame);
-					
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} finally {
-					try {
-						writer.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-				
-				try {
-					
-					
-					
-			        BufferedReader br = new BufferedReader(new FileReader(file));
-			            String line;
-			            while ((line = br.readLine()) != null) 
-			            {
-			                list.add(line);
-			                Log.i("Widget Provider", "List item: " +line);
-			            }
-			            br.close();
-					//String string;
-					//StringBuffer stringBuffer = new StringBuffer();
-					//while ((string = reader.readLine()) != null) {
-					//stringBuffer.append(string + "\n");
-					//}
-					//favoritesView.setText(stringBuffer.toString());
-					} catch (IOException e) {
-					e.printStackTrace();
-					}
+		
 	}
 
 	 
