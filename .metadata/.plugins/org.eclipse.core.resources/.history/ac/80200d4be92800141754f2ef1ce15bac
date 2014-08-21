@@ -2,6 +2,9 @@
 <resources>
 
     <string name="app_name">Readable</string>
+    <string name="username">Enter Your Name:</string>
+    <string name="nextBook">Next Book:</string>
+    <color name="lavender">#50cba1e6</color>
     <string name="backgroundColor">Choose A Book Title Text Color:</string>
     <string name="button">Save Settings</string>
     <dimen name="widget_margin">8dp</dimen>

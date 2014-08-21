@@ -23,10 +23,6 @@
                <category android:name="android.intent.category.LAUNCHER" />  
             </intent-filter>
         </activity>
-        <activity
-            android:name=".DetailActivity" 
-            android:label="@string/detailactivity" >
-        </activity>
         <receiver 
             android:name=".WidgetProvider" >
             <intent-filter >

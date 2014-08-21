@@ -858,15 +858,14 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f070002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f080008;
+        public static final int abc_search_url_text_holo=0x7f080007;
         public static final int abc_search_url_text_normal=0x7f080000;
         public static final int abc_search_url_text_pressed=0x7f080002;
         public static final int abc_search_url_text_selected=0x7f080001;
-        public static final int black=0x7f080004;
-        public static final int darkGray=0x7f080007;
-        public static final int lavender=0x7f080003;
-        public static final int lightgrey=0x7f080005;
-        public static final int transparentBlack=0x7f080006;
+        public static final int black=0x7f080003;
+        public static final int darkGray=0x7f080006;
+        public static final int lightgrey=0x7f080004;
+        public static final int transparentBlack=0x7f080005;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1242,13 +1241,11 @@ containing a value of this type.
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0b000b;
         public static final int app_name=0x7f0b000d;
-        public static final int backgroundColor=0x7f0b0010;
-        public static final int button=0x7f0b0011;
-        public static final int detailactivity=0x7f0b0013;
-        public static final int name=0x7f0b0014;
-        public static final int nextBook=0x7f0b000f;
-        public static final int username=0x7f0b000e;
-        public static final int widget_button=0x7f0b0012;
+        public static final int backgroundColor=0x7f0b000e;
+        public static final int button=0x7f0b000f;
+        public static final int detailactivity=0x7f0b0011;
+        public static final int name=0x7f0b0012;
+        public static final int widget_button=0x7f0b0010;
     }
     public static final class style {
         /** 
