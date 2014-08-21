@@ -22,7 +22,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:background="@color/lightgrey"
-            android:gravity="center"
+            android:gravity="left"
             android:textColor="@color/black" />
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_alignLeft="@+id/nextBookTitle"
             android:layout_below="@+id/nextBookTitle"
             android:background="@color/lightgrey"
-            android:gravity="center"
+            android:gravity="left"
             android:textColor="@color/black" />
 
         <Button

@@ -10,7 +10,7 @@
  * Purpose: The activity is the required provider for the widget. It supplies the essential widget functionality such as onUpdate.
  * onUpdate is called every hour and updates the book title to the next one in the book list. It also pulls the shared preferences 
  * so the name and font color are the ones the user configured on startup
- */            
+ */          
 
 package com.arianaantonio.readable;
 
