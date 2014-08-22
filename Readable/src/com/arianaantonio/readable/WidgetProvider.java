@@ -13,7 +13,7 @@
  */            
 
 package com.arianaantonio.readable;
-
+ 
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.net.Uri;
+import android.net.Uri;    
 import android.util.Log;
 import android.widget.RemoteViews;
 

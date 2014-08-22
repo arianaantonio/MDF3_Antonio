@@ -10,10 +10,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-      
+        android:background="@drawable/images"
         android:orientation="vertical"
-        tools:ignore="UselessParent"
-         android:background="@drawable/images" >
+        tools:ignore="UselessParent" >
 
         <TextView
             android:id="@+id/nextBookTitle"
@@ -35,14 +34,14 @@
             android:gravity="center"
             android:textColor="@color/black" />
 
-        <Button
+        <ImageButton
             android:id="@+id/button1"
             android:layout_width="wrap_content"
-            android:layout_height="27dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/nextBook"
             android:layout_centerHorizontal="true"
-            android:text="@string/widget_button"
-            android:textSize="10sp" />
+            android:contentDescription="@string/widget_button"
+            android:src="@drawable/index" />
 
     </RelativeLayout>
 
