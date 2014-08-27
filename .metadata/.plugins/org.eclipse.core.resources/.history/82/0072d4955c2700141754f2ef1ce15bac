@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <string name="app_name">Readable</string>
-    <string name="username">Enter Name:</string>
-    <string name="nextBook">Next Book:</string>
-    <color name="lavender">#cba1e6</color>
-
-</resources>

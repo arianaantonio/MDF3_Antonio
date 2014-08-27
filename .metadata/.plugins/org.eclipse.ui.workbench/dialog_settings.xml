@@ -16,19 +16,30 @@
 		<item value="51" key="DIALOG_Y_ORIGIN"/>
 		<item value="-17" key="DIALOG_X_ORIGIN"/>
 	</section>
+	<section name="NewWizardAction">
+		<item value="org.eclipse.ui.wizards.new.file" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.ui.Basic"/>
+			<item value="org.eclipse.cdt.ui.newCWizards"/>
+			<item value="org.eclipse.egit.ui.wizardCategory"/>
+			<item value="org.eclipse.jdt.ui.java"/>
+			<item value="org.eclipse.wst.XMLCategory"/>
+			<item value="org.eclipse.ui.Examples"/>
+		</list>
+	</section>
 	<section name="InstallationDialogSettings">
 		<item value="951" key="DIALOG_WIDTH"/>
 		<item value="-46" key="DIALOG_Y_ORIGIN"/>
-		<item value="343" key="DIALOG_X_ORIGIN"/>
 		<item value="652" key="DIALOG_HEIGHT"/>
+		<item value="343" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="ShowViewDialog">
 		<item value="308" key="DIALOG_WIDTH"/>
 		<item value="com.android.ide.eclipse.ddms.views.LogCatView" key="ShowViewDialog.STORE_SELECTED_VIEW_ID"/>
 		<item value="108" key="DIALOG_Y_ORIGIN"/>
-		<item value="455" key="DIALOG_X_ORIGIN"/>
 		<item value="415" key="DIALOG_HEIGHT"/>
+		<item value="455" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 		<list key="ShowViewDialog.STORE_EXPANDED_CATEGORIES_ID">
 			<item value="org.eclipse.ui"/>
