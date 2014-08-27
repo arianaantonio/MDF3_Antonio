@@ -11,7 +11,8 @@
  * an email intent with the data.
  */ 
 
-package com.arianaantonio.signup;
+package com.arianaantonio.signup; 
+
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -21,12 +22,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
+import android.webkit.WebView; 
 
 
 @SuppressLint("SetJavaScriptEnabled")
-public class MainActivity extends Activity {
-
+public class MainActivity extends Activity { 
+ 
 	WebView newsletterWebView;
 	
 	@Override
@@ -56,6 +57,7 @@ public class MainActivity extends Activity {
 			String emailText = "Hello " +name+ ",\n Thank you for signing up for our newsletter. Check your inbox on " +birthday+
 					" for a birthday surprise! Here is the comment you left us: " +comment+ ", Have a great day!\n Regards,\n" +
 							"The Team";
+			Log.i("Main activity", "Email text: " +emailText);
 			Intent intent = new Intent(Intent.ACTION_SENDTO);
 			intent.setType("text/plain");
 			intent.putExtra(Intent.EXTRA_EMAIL, email);
