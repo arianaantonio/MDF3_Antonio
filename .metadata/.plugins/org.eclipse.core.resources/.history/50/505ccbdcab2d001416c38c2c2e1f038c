@@ -1,0 +1,34 @@
+
+
+
+$(document).ready(function () {
+
+	$('#newsletterForm').validate({
+
+		rules: {
+			nameInput: {
+				required: true,
+				lettersonly: true
+			},
+			emailInput: {
+				required: true,
+				email: true
+			},
+			birthdayInput: {
+				required: true 
+			},
+			commentInput: {
+				required: true
+			}
+		},
+		submitHandler: function(form) {
+			var name = $('#nameInput').val();
+			var email = $('#emailInput').val();
+			var birthday = $('#birthdayInput').val();
+			var comments = $('commentInput').val();
+			Console.log('Entered: ' + name, email, birthday, comments);
+
+			Android.saveData(name, email, birthday, comments);
+		}
+	})
+})
