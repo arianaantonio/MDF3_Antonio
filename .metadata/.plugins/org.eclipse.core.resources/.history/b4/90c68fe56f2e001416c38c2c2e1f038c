@@ -1,0 +1,21 @@
+/*
+ * Author: Ariana Antonio
+ * 
+ * Project: SignUp
+ * 
+ * Package: Assets
+ * 
+ * File: style.css
+ * 
+ * Purpose: Style sheet for the webview.
+ */
+ 
+ .body{
+ font-family: Georgia, Ariel;
+ color: white;
+}
+ li {
+list-style: none;
+}
+fieldset{border: none;}
+div {border: none;}

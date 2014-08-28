@@ -31,11 +31,11 @@ public class MainActivity extends Activity {
  
 	WebView newsletterWebView;
 	
-	@Override
+	@Override 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+		  
 		newsletterWebView = (WebView) findViewById(R.id.webview);
 		newsletterWebView.loadUrl("file:///android_asset/signup.html");
 		

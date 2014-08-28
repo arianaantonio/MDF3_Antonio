@@ -1,0 +1,15 @@
+/*
+ * Author: Ariana Antonio
+ * 
+ * Project: SignUp
+ * 
+ * Package: Assets
+ * 
+ * File: style.css
+ * 
+ * Purpose: Style sheet for the webview.
+ */
+ 
+ li {
+list-style: none;
+}

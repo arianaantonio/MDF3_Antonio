@@ -3,7 +3,7 @@
  * 
  * Project: SignUp
  * 
- * Package: com.arianaantonio.signup
+ * Package: Assets
  * 
  * File: signup.js
  * 
