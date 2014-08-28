@@ -1,0 +1,90 @@
+/*
+ * Author: Ariana Antonio
+ * 
+ * Project: SignUp
+ * 
+ * Package: com.arianaantonio.signup
+ * 
+ * File: MainActivity.java
+ * 
+ * Purpose: The activity is inflating the webview and receiving the input data from the Javascript code. Activity then launches
+ * an email intent with the data.
+ */ 
+
+package com.arianaantonio.signup; 
+
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.widget.Toast;
+
+import com.arianaantonio.networkconnection.NetworkConnect;
+
+
+
+@SuppressLint({ "SetJavaScriptEnabled", "NewApi" })
+public class MainActivity extends Activity { 
+ 
+	WebView newsletterWebView;
+	Context mContext;
+	
+	@Override 
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		
+		//checking network connection from JAR
+		NetworkConnect networkConnection = new NetworkConnect();
+		Boolean networkConn = networkConnection.connectionStatus(mContext);
+		if (networkConn) {
+		Toast.makeText(context, "You are connected", Toast.LENGTH_LONG).show();
+		} else {
+		Toast.makeText(mContext, "You are NOT connected to the internet", Toast.LENGTH_LONG).show();
+		}
+		  
+		newsletterWebView = (WebView) findViewById(R.id.webview);
+		newsletterWebView.loadUrl("file:///android_asset/signup.html");
+		
+		WebSettings settings = newsletterWebView.getSettings();
+		settings.setJavaScriptEnabled(true);
+		newsletterWebView.addJavascriptInterface(new SignUpInterface(this), "Android");
+		
+		
+	}
+	public class SignUpInterface {
+		Context mContext;
+		
+		SignUpInterface(Context context) {
+			mContext = context;
+		}
+		@JavascriptInterface
+		public void saveData(String name, String email, String birthday, String comment) {
+			Log.i ("Main Activity", "Saving data");
+			
+			String emailText = "Hello " +name+ ",\n\nThank you for signing up for our newsletter. Check your inbox on " +birthday+
+					" for a birthday surprise! Here is the comment you left us: " +comment+ ", Have a great day!\n\nRegards,\n" +
+							"The Team";
+			Log.i("Main activity", "Email text: " +emailText);
+			Log.i("Main activity", "Email address: " +email);
+			if (email.isEmpty()) {
+				Toast.makeText(mContext, "Please enter your email address", Toast.LENGTH_LONG).show();
+			} else {
+				Intent intent = new Intent(Intent.ACTION_SEND);
+				intent.setType("message/rfc822");
+				intent.putExtra(Intent.EXTRA_EMAIL, new String[] { email });
+				intent.putExtra(Intent.EXTRA_SUBJECT, "Welcome");
+				intent.putExtra(Intent.EXTRA_TEXT, emailText);
+				
+				startActivity(Intent.createChooser(intent, "Send email"));
+			}
+			
+		}
+	}
+}
