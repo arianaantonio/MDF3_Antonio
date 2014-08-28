@@ -73,7 +73,7 @@ public class MainActivity extends Activity {
 			
 			if (email.isEmpty()) {
 				Toast.makeText(mContext, "Please enter your email address", Toast.LENGTH_LONG).show();
-			} else { 
+			} else {
 				//intent to launch email
 				Intent intent = new Intent(Intent.ACTION_SEND);
 				intent.setType("message/rfc822");
